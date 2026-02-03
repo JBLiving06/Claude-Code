@@ -1,0 +1,89 @@
+Module 2: The Protocols. Four workflows you can use today with free ChatGPT.
+
+I'm going to give you exact prompts you can copy and use. These are battle-tested workflows that work.
+
+Protocol one: Rubric Engineering.
+
+Every professor tells you what they want. It's in the assignment description and the rubric. Most students skim it once and start writing. That's a mistake. The rubric is a cheat sheet for getting a good grade—if you know how to read it.
+
+Here's the workflow. Before you do anything else, copy the entire assignment prompt and rubric into ChatGPT. Then ask this exact question: "Analyze this rubric. What does this professor prioritize? What distinguishes an A paper from a B paper? What patterns do you see in what they value?"
+
+ChatGPT will break down the rubric systematically. It might tell you: this professor values clear argumentation over comprehensiveness. Or: they want specific evidence, not general claims. Or: they care about engagement with counterarguments. These patterns tell you where to focus your effort. If the professor cares most about argumentation, spend more time on your thesis and structure. If they care most about evidence, spend more time on sources.
+
+Next step: ask "Based on this analysis, what are the three biggest mistakes a student might make on this assignment?" Now you have a list of traps to avoid before you've written a word. ChatGPT might tell you: don't just summarize—analyze. Don't use only secondary sources. Don't ignore the other side of the debate. These are specific warnings.
+
+Here's a more advanced prompt: "Based on this rubric, give me a checklist of what my paper needs to include to get the highest marks in each category." Now you have a pre-flight checklist you can use before you submit.
+
+Final step: once you have a draft, paste it into the same conversation—the one that has your rubric analysis. Ask "How does this draft perform against the professor's priorities? Where am I weak? Be specific about which rubric criteria I'm not fully meeting." You get targeted feedback specific to what your professor actually cares about, not generic writing advice.
+
+This takes maybe fifteen to twenty minutes. It's not cheating—you're still doing all the thinking and writing. You're just being strategic about understanding what's being asked. You're reading the rubric the way your professor wants you to read it.
+
+If you have Claude: Claude's longer context window means you can include multiple past assignments and graded papers and ask it to identify patterns across how your professor grades. That's a level up—you're reverse-engineering their preferences over time. But free ChatGPT handles single assignments well.
+
+Protocol two: Research Synthesis.
+
+Most students research by typing questions into ChatGPT and taking whatever comes back. That's dangerous—ChatGPT will confidently cite papers that don't exist. It will invent author names and journal titles. If you cite those in your paper, you fail the assignment and damage your credibility. Here's a safer workflow.
+
+Start by asking ChatGPT to generate a research map, not content. Your prompt: "I'm researching [topic]. Give me a framework: what are the major schools of thought on this topic? What are the key debates? What types of sources should I look for, and what search terms should I use in academic databases like JSTOR and Google Scholar?"
+
+Now you have a map, not a destination. ChatGPT might tell you: there are three major perspectives—economic, sociological, and political. The key debate is about causation versus correlation. Search for terms like "policy evaluation" and "longitudinal studies." This is legitimate—you're getting orientation, not fabricated facts.
+
+Take those search terms to Google Scholar, JSTOR, or your library database. Find actual sources. This is the part you can't skip. Real research means finding real papers. Download three to five sources that look relevant.
+
+Once you have real sources—papers, book chapters, articles—paste the abstracts or key passages into ChatGPT. Now ask: "Based on these sources I've provided, what are the main areas of agreement and disagreement among these authors? Where are the gaps in my research? What perspective am I missing?"
+
+The key difference: ChatGPT is analyzing real sources you found, not generating fake ones. When you write your paper, you're citing real authors with real page numbers.
+
+For thesis development, try this prompt: "I'm looking at these three perspectives on [topic]. Help me identify a thesis angle that engages with all three—either reconciling them, challenging one, or finding something they all miss." Now you're using AI to help you think through your argument, not to replace your thinking.
+
+One more useful prompt: "Here's my tentative thesis. What are the strongest counterarguments I need to address? What evidence would I need to make this thesis convincing?" This helps you stress-test your argument before you commit to it.
+
+If you have Perplexity or Claude: These tools search the live web and include source links in their responses. For topics where you need current information—recent news, updated statistics—they're stronger than ChatGPT's knowledge cutoff. For academic databases with paywalled content, you still need to do the legwork yourself—no AI tool replaces JSTOR or your library's access.
+
+Protocol three: Pre-Class Prep.
+
+There's reading you're supposed to do before class. Most students either skip it or skim it so lightly they might as well have skipped it. Here's how to use AI to actually show up prepared—in less time than you'd spend on a thorough read.
+
+If you have a PDF or article assigned, try this workflow. First, read the introduction and conclusion yourself—that's maybe five to ten minutes. This gives you the author's core argument and main claims. You need to see this in their words, not a summary.
+
+Then paste the key sections—or the whole article if it's short—into ChatGPT and ask: "Summarize the main argument of this text. What evidence does the author use to support it? What assumptions are they making that they don't explicitly defend?"
+
+Now you understand the argument at a structural level. But here's where it gets useful for class participation.
+
+Ask: "What are three thoughtful questions I could ask in class that would demonstrate I engaged with this reading and push the discussion forward? Not basic comprehension questions—questions that probe the argument or connect to larger themes."
+
+ChatGPT might generate: "How would the author respond to critics who argue that their evidence is correlational rather than causal?" Or: "Does this argument apply equally to different demographic groups, or is it limited in scope?" Now you have specific contributions ready for seminar. You're not just showing up—you're showing up prepared to add value.
+
+For dense or theoretical readings—the ones that are genuinely hard to understand on first pass—ask ChatGPT to explain the core concepts at your level: "Explain Foucault's concept of biopower for someone who understands basic sociology but hasn't read Foucault. Use concrete examples." You get context that makes the actual reading more accessible when you go back to it.
+
+Before a lecture, if you know the topic, ask: "I'm about to attend a lecture on [topic]. Based on what's typically covered in this area, give me three things I should listen for, two questions I should be prepared to think about, and any key terms I should know beforehand." Now you're actively listening with frameworks, not passively receiving information.
+
+The principle here is priming. Cognitive science shows that when you give your brain context before the learning happens, you retain dramatically more. AI is an excellent priming tool because it's available at 11pm the night before class when you finally get around to the reading.
+
+If you have NotebookLM: Upload your readings and NotebookLM can create audio overviews you can listen to while walking to class. It's like having a study buddy summarize the readings for you—except the summaries are grounded in the actual text.
+
+Protocol four: Exam Preparation.
+
+This is where AI really shines. Most exam prep is passive—re-reading notes, highlighting, making flashcards. The research is clear: active recall and practice testing work better. The problem is that active study takes more effort. AI makes active preparation easy.
+
+Start with this: paste your notes, syllabus, or key readings into ChatGPT. Ask "Based on this material, generate twenty practice questions that might appear on a college-level exam. Include a mix: some factual recall questions, some application questions where I have to use concepts in new situations, and some analysis questions where I have to compare or evaluate ideas. Don't give me the answers yet."
+
+Now you have a practice test. Here's the key: try to answer each question from memory before asking ChatGPT to evaluate your answers. Write out your responses—don't just think about them. Then ask: "Here are my answers. Grade each one. Tell me what's right, what's wrong or incomplete, and what I should have included."
+
+This is active recall—retrieving information from memory rather than just recognizing it. It's the most effective study method we know of, and most students skip it because it's uncomfortable. AI makes it easy enough that you'll actually do it.
+
+For essay exams, ask for practice prompts: "Generate three possible essay prompts for an exam covering [course material]. For each prompt, outline what a strong answer would include—the key arguments, the evidence needed, and the structure that would work best." Now practice writing thesis statements and outlines for each prompt against the clock. If you can outline an answer in five minutes, you can write a full essay under exam conditions.
+
+For cumulative exams—the ones that cover the whole semester—ask ChatGPT to identify the conceptual architecture: "I'm studying these five major topics from my sociology course. What are the conceptual links between them? What themes run across the whole course? How might an exam ask me to synthesize across these different units?" This helps you see the forest, not just the trees.
+
+One powerful technique: explain the material back to ChatGPT as if you're teaching it. "I'm going to try to explain Weber's concept of rationalization. Point out where my explanation is unclear, incomplete, or incorrect." The act of teaching reveals gaps in your understanding that passive reading never would—that's the Feynman technique, and AI makes it possible to practice alone.
+
+Another technique: ask for connections to current events. "How would [theorist] analyze [recent news event]? What concepts would they apply?" This is often exactly what exam questions ask, and practicing it in advance makes you faster under pressure.
+
+If you have NotebookLM: You can upload all your notes and readings, then generate study materials specifically from those sources. NotebookLM creates audio summaries you can listen to while exercising or commuting. For exam prep, NotebookLM is genuinely a level up from ChatGPT because it's grounded in your actual course materials.
+
+Those are the four protocols. Rubric engineering, research synthesis, pre-class prep, exam preparation. None of them require you to buy anything. All of them work with free ChatGPT today.
+
+The difference between students who use AI procedurally and students who use it at mastery level often comes down to exactly these kinds of structured workflows. It's not about the tool—it's about how systematically you use it. Procedural users ask one question and take one answer. Mastery users build conversations, iterate on outputs, and use AI to enhance their thinking at every stage.
+
+In Module 3, I'm going to walk through three real assignments using these protocols so you can see exactly how they work in practice.

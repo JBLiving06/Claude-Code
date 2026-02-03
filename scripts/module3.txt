@@ -1,0 +1,125 @@
+Module 3: Products in Practice. Let's walk through real assignments.
+
+I'm going to show you three scenarios—a research paper, an exam, and a presentation. For each one, I'll walk through exactly how to apply the protocols from Module 2. These are specific, observable, replicable workflows. I want you to be able to do exactly what I'm describing.
+
+Scenario one: The Research Paper.
+
+You're assigned a 2,500-word paper on income inequality and educational outcomes. Due in two weeks. Let me walk you through this day by day.
+
+Day one. Start with rubric engineering. Your professor provided a rubric—maybe it's vague, something like "demonstrates understanding of the topic, uses appropriate sources, clear argumentation, proper citation format." Open ChatGPT and paste the entire assignment description and rubric into it.
+
+Your prompt: "Analyze this rubric. What distinguishes excellent work from merely adequate work? Based on phrases like 'demonstrates understanding,' what specifically is the professor looking for? What would make a paper fail to meet these criteria?"
+
+ChatGPT responds with analysis. It might identify that "appropriate sources" probably means peer-reviewed articles rather than news sources or Wikipedia. That "demonstrates understanding" implies you need to engage with the scholarly debate rather than just summarize—you need to have a point of view. That the word count of 2,500 words suggests three to four main points with developed evidence for each.
+
+Now follow up: "Based on this analysis, what are the three biggest mistakes a student might make on this assignment?"
+
+ChatGPT tells you: First, summarizing rather than arguing—just describing what scholars say without taking a position. Second, using only one type of source—you need variety. Third, weak transitions between sections that make the paper feel like a list rather than an argument.
+
+Now you have a strategic map before you've read a single source. You know what to prioritize and what to avoid.
+
+Days two through five. Research synthesis. Start by asking ChatGPT for a research map.
+
+Your prompt: "I'm writing about income inequality and educational outcomes for a college sociology class. What are the major perspectives in this debate? What types of sources should I look for? Give me specific search terms I can use in JSTOR and Google Scholar."
+
+ChatGPT tells you about social capital theories—the idea that family networks and resources matter. About school funding equity research—how money is distributed across districts. About intergenerational mobility studies—how class position transmits across generations. It suggests search terms like "socioeconomic status academic achievement" and "school district funding disparities" and "cultural capital education."
+
+You take those terms to JSTOR and Google Scholar. You spend a few hours finding sources. You download five solid papers—maybe Lareau on concerted cultivation, Reardon on the income achievement gap, some work on school funding formulas.
+
+Now paste the abstracts into ChatGPT. Your prompt: "Here are the abstracts of five sources on income inequality and educational outcomes. What are the main areas of agreement among these authors? Where do they disagree? Are there any gaps—perspectives I'm missing? And based on these sources, what's a potential thesis angle that would let me engage with the debate rather than just summarize it?"
+
+ChatGPT identifies that all five agree on correlation—income inequality is strongly associated with educational outcomes. But they disagree on mechanisms. Lareau emphasizes parenting practices. Reardon points to school quality differences. The school funding papers focus on resource allocation.
+
+For your thesis, ChatGPT suggests: "While researchers agree that income inequality correlates with educational outcomes, the mechanisms proposed—from parenting practices to school funding to neighborhood effects—suggest different policy interventions. This paper argues that funding-based interventions, while necessary, are insufficient without addressing family-level resource gaps."
+
+Now you have a thesis grounded in real sources that positions you in an actual academic conversation. You're not summarizing—you're arguing.
+
+Days six through ten. Writing with AI feedback. You write your draft—you do the writing. You structure it according to your thesis, you engage with the sources, you develop your argument.
+
+Then paste the draft into the same ChatGPT conversation that has your rubric analysis and source synthesis. Keep that context.
+
+Your prompt: "Here's my draft of the paper we've been discussing. How does it perform against the rubric criteria you identified earlier? Where am I weak? Be specific about which sections need work."
+
+ChatGPT tells you: your thesis is clear and the first two sections are strong. But your engagement with counterarguments is thin in section three—you dismiss the parenting-practices perspective too quickly without really grappling with Lareau's evidence. Also, your transition between the school funding discussion and your conclusion feels abrupt. And check paragraph seven—you reference data but don't cite a source.
+
+You revise based on this feedback. You strengthen section three by actually engaging with Lareau's argument before offering your response. You add a transition paragraph. You add the missing citation.
+
+Days eleven through fourteen. Polish. By now the intellectual work is done. Ask ChatGPT to help with surface-level editing: "Read this draft and identify any sentences that are unclear, awkward, or too long. Also flag any issues with grammar or word choice." Clean up the writing.
+
+Total ChatGPT conversations: maybe four or five sessions, each fifteen to thirty minutes. The paper is authentically yours—you read the sources, you developed the argument, you wrote the draft. But AI helped you understand the assignment, find your sources, develop your thesis, and catch weaknesses before you submitted.
+
+Scenario two: The Midterm Exam.
+
+You have a cumulative exam in two weeks covering twelve weeks of sociology material. The format: multiple choice, short answer, and one essay question chosen from three options.
+
+Week one: Start by creating your study materials. Gather your notes, past quizzes, study guides, and the syllabus with reading lists. Paste the key sections—the course topics, the major theorists, the key concepts—into ChatGPT.
+
+Your prompt: "Based on this material from my introductory sociology course, generate twenty practice questions in the style of a college exam. Include a mix: five factual recall questions, five application questions where I have to use concepts in new situations, five analysis questions where I compare or evaluate ideas, and five short-answer questions that require a paragraph of explanation. Don't give me the answers yet."
+
+ChatGPT generates questions like: "Explain the difference between mechanical and organic solidarity according to Durkheim." And: "Apply conflict theory to analyze a current example of workplace inequality—be specific about which conflict theory concepts you're using." And: "What does Weber mean by the 'iron cage' and how does it differ from Marx's view of alienation under capitalism?" And: "Compare functionalist and conflict perspectives on education—which aspects of schooling would each approach emphasize, and why?"
+
+Now for the active part. Cover the answers and try to respond to each question from memory. Don't look at your notes. Write out your answers in full—if it's a paragraph question, write a paragraph.
+
+Then paste your answers back into ChatGPT: "Here are my responses to your practice questions. Grade each one. Tell me what's right, what's wrong or incomplete, and what a stronger answer would include."
+
+ChatGPT evaluates: "Your answer on mechanical versus organic solidarity is mostly correct, but you didn't mention that Durkheim saw this shift as connected to the division of labor—add that context. Your conflict theory application is good, but you only used one concept—a stronger answer would layer multiple concepts together. Your iron cage explanation is solid."
+
+This is active recall—retrieving information from memory rather than just recognizing it. It's uncomfortable, which is exactly why most students don't do it. But it's the most effective study method. And AI makes it easy enough that you'll actually do it.
+
+Repeat this process with different questions. Generate another twenty questions focusing on your weak areas.
+
+Week two: Focus on connections and essay prep. Ask ChatGPT to map the conceptual architecture of the course.
+
+Your prompt: "These are the major theorists and concepts from my sociology course: Durkheim, Weber, Marx, Mead, Goffman, functionalism, conflict theory, symbolic interactionism, socialization, stratification, institutions. What are the conceptual links between them? What themes run across the whole course? How might an exam essay ask me to synthesize across these different topics?"
+
+ChatGPT identifies patterns. Rationalization appears in Weber's iron cage, in discussions of McDonaldization, and in critiques of bureaucracy. Power and inequality connect Marx, conflict theory, and stratification. The micro-macro divide links symbolic interactionism with structural approaches.
+
+ChatGPT suggests possible essay prompts: "Trace the concept of rationalization from Weber through contemporary applications." Or: "Compare how functionalist and conflict perspectives would analyze the same social institution." Or: "How do micro-level theories like symbolic interactionism relate to macro-level structural analysis?"
+
+Now practice writing essay outlines for each of these prompts against the clock. Set a timer for five minutes. Write a thesis statement and sketch out three body paragraphs with the key points you'd make in each.
+
+Then use the Feynman technique. Explain the key concepts back to ChatGPT as if you're teaching them: "I'm going to explain Weber's concept of rationalization. Tell me where my explanation is unclear, incomplete, or incorrect."
+
+ChatGPT responds: "Your explanation captures the efficiency aspect well, but you haven't addressed the disenchantment dimension—Weber saw rationalization as stripping meaning and mystery from social life, not just making things more efficient. Add that nuance."
+
+Day before the exam: Quick review. Ask ChatGPT: "Based on the material we've covered, give me a one-page summary of the concepts I've been weakest on, with the key points I need to remember." Generate five more practice questions on your trouble spots. Do a final round of active recall.
+
+You walk into the exam having studied actively, tested yourself repeatedly, and identified your weaknesses before the professor could find them. That's mastery.
+
+Scenario three: The Group Presentation.
+
+You're part of a team presenting on climate policy options. Fifteen minutes total, with slides. Your section is on carbon pricing mechanisms. You have five minutes and need to explain something most of your classmates know nothing about.
+
+Start with the Pre-Class Prep protocol applied to your research. You have three articles on carbon taxes and cap-and-trade. Paste key sections into ChatGPT.
+
+Your prompt: "Summarize the key differences between carbon taxes and cap-and-trade. What are the main arguments for and against each approach? What do economists generally agree on, and where is there genuine disagreement?"
+
+ChatGPT gives you a structured overview. Both put a price on carbon emissions. A tax sets the price directly; cap-and-trade sets a cap on total emissions and lets the market determine the price. Economists generally agree that carbon pricing is more efficient than direct regulation. They disagree about which approach is more politically feasible and which handles uncertainty better.
+
+Now you understand the landscape. But a presentation isn't a paper—it's about clarity, engagement, and memorability.
+
+Use ChatGPT to help you simplify: "I need to explain carbon pricing to college students who haven't studied economics and probably find this topic boring. Give me a simple analogy for carbon taxes and another for cap-and-trade. Make them memorable."
+
+It suggests: "A carbon tax is like a toll on a highway—the more you drive, the more you pay, so you have an incentive to drive less. Cap-and-trade is like having a limited number of highway passes for a city. Companies have to buy passes to emit, and they can sell passes to each other. If you don't need all your passes, you can sell them to someone who does."
+
+Now you have something memorable. You can open with the analogy and then build from there.
+
+For your slides, ask ChatGPT for content structure: "Give me bullet points for five slides on carbon pricing for a college audience. Cover: what carbon pricing is and why it matters, carbon taxes, cap-and-trade, comparison of the two, and policy recommendations. Keep each slide to three or four bullets maximum—no walls of text."
+
+ChatGPT gives you a structure. You edit it, add your own language, find a good image for each slide.
+
+Now prepare for questions. Your prompt: "What are the most likely critical questions an audience might ask about carbon pricing? Think about concerns from different political perspectives. How should I respond to each?"
+
+ChatGPT generates: "Someone might ask whether carbon pricing hurts poor people who spend more of their income on energy—that's the regressivity concern. You can respond that you can address this by rebating the revenue, like Canada does. Someone might ask whether it just sends jobs overseas to countries without carbon pricing—that's the competitiveness concern. You can respond that border adjustments can address this. Someone might ask whether the price is ever high enough to actually change behavior—point to evidence from places where it's been implemented."
+
+You walk into the presentation prepared for challenges. You're not just presenting information—you're ready to defend it.
+
+Three scenarios. Research paper, midterm exam, group presentation. Each used free ChatGPT. Each demonstrated the protocols in action with specific prompts you can adapt for your own work.
+
+Notice what I didn't do in any of these scenarios. I didn't ask AI to write my paper—I wrote it myself and used AI to help me think through the argument and improve my draft. I didn't ask AI to take my exam—I used it to create better study materials and test my understanding. I didn't copy AI-generated text into my slides—I used AI to help me think about structure and prepare for questions.
+
+Every scenario used AI to help me think better, prepare more strategically, and catch my own weaknesses before they became problems.
+
+That's the difference between procedural and mastery. Procedural use asks AI to do the work. Mastery uses AI to make your work better.
+
+In Module 4, we'll look ahead—where AI is going and why it matters for your career.

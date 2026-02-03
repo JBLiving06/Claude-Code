@@ -1,0 +1,14 @@
+# HeyGen Workshop Production Pipeline
+# Python dependencies
+
+# HTTP requests for API communication
+requests>=2.31.0
+
+# Optional: python-dotenv for loading .env files
+python-dotenv>=1.0.0
+
+# Optional: tqdm for progress bars (if you want fancier download progress)
+# tqdm>=4.66.0
+
+# Optional: ffmpeg-python for video concatenation
+# ffmpeg-python>=0.2.0

@@ -1,0 +1,55 @@
+Module 4: The Horizon. Where this is going and what it means for you.
+
+Everything I've shown you so far—the protocols, the workflows, the tools—that's the present. Now let's talk about where AI is headed in the next twelve to eighteen months, and why the gap between what universities are preparing you for and what the professional world actually needs is about to get much wider.
+
+The next phase is called agentic AI. Right now, you use AI by giving it a prompt and getting a response. You're in the driver's seat. But agentic AI is different—it can take actions autonomously, break down complex tasks, and execute multi-step plans without constant human input.
+
+Let me make this concrete. Today, if you want to research a topic, you might use the Research Synthesis protocol from Module 2. You prompt, AI responds, you take the next step, you prompt again. It works, but you're doing the coordination.
+
+With agentic AI, you could say: "Research the impact of remote work on urban real estate markets. Find five academic sources and three recent news articles. Summarize the key findings and identify contradictions. Draft an outline for a 2,500-word analysis." And the AI would do all of that—browsing the web, accessing databases, reading articles, synthesizing information, producing the outline—with minimal intervention from you.
+
+This is coming in 2026 and 2027. Not as science fiction, but as products you'll be able to use. Claude's computer use capabilities, OpenAI's agent frameworks, Google's Gemini agents—the infrastructure is being built right now.
+
+What does this mean for you?
+
+First: the protocols you learned in this workshop will need to evolve. The frameworks stay the same—rubric engineering, research synthesis, strategic preparation—but the execution will change. Instead of manually copying text between tools and prompting step by step, you'll describe what you want and the AI will orchestrate the steps.
+
+This makes the principles more important, not less. If you don't understand what good research looks like, you won't know if the agent did it well. If you can't evaluate an argument, you won't catch the AI's mistakes. Mastery means knowing what to ask for and being able to judge the result—not doing every step yourself.
+
+Second: the job market is shifting faster than universities can adapt. Most career counselors are giving advice based on a job market that's already changing. They'll tell you to develop skills that were valuable in 2020. But the skills that will be valuable in 2028 are different.
+
+Let me be specific. Basic research and analysis—the kind where you gather information and produce a summary—that's being automated. Entry-level writing tasks—the kind where you follow a template and produce content—that's being automated. Routine knowledge work—processing, organizing, standard reporting—that's being automated.
+
+What's not being automated: judgment calls in ambiguous situations, building relationships and persuading people, creating genuinely novel ideas, navigating complex human dynamics, making ethical decisions with real stakes.
+
+Your university is probably teaching you to do the things that AI will soon do better. Not because they're malicious, but because curriculum changes slowly and the technology is moving fast.
+
+Third: the students who learn to work with agents will have a massive advantage. Think about it like this: a student who uses AI at mastery level today can do the work of two or three students who don't. A student who effectively orchestrates AI agents in 2027 might be able to do the work of five or ten.
+
+That's not hyperbole—that's the productivity multiplier we're looking at. And it means that the gap between students who develop these capabilities and those who don't will be enormous.
+
+So what should you actually do?
+
+Stay current. The specific tools I mentioned in this workshop will be outdated in two years. The meta-skill of learning new tools, evaluating what they can do, and integrating them into your workflow—that's what lasts. Build the habit of experimentation now.
+
+Develop judgment. AI can generate; humans evaluate. AI can propose; humans decide. The more you practice making judgment calls, evaluating arguments, and making decisions under uncertainty, the more valuable you become. Seek out assignments and experiences that require judgment, not just execution.
+
+Build human skills. The more AI handles cognitive tasks, the more valuable human skills become. Presenting. Persuading. Negotiating. Leading teams. Building relationships. These aren't soft skills—they're the durable skills.
+
+Think about leverage. Ask yourself: how can I use AI to multiply my impact? Not replace my thinking, but extend it. Not avoid the hard work, but focus my effort where it matters most. The students who think in terms of leverage will outperform those who just use AI as a writing assistant.
+
+Be honest about the transition. The next few years are going to be uncomfortable. The rules are changing, and nobody—not your professors, not career services, not even the AI companies—knows exactly where this lands. Comfort with uncertainty is itself a skill worth developing.
+
+One more thing. I want to address something you might be feeling: anxiety. It's rational to feel anxious about this. The world you're preparing for is genuinely uncertain. The career paths your parents followed may not exist in the same form. That's unsettling.
+
+But here's the reframe: you're learning about this now. Most people aren't. The fact that you sat through this workshop, learned these protocols, and are thinking about how to adapt—that puts you ahead. Anxiety about the future is less useful than active preparation for it.
+
+Let me close where I opened. I'm an AI avatar—face generated from a photo, voice cloned from audio, movements synthesized by algorithms. The code that rendered me was written by another AI. That's strange. But it's also a preview.
+
+The world you're entering is a world where AI generates content, researches topics, writes code, and creates media. Your job isn't to compete with that. Your job is to master it—to understand what it can do, what it can't do, and how to use it to amplify your own capabilities.
+
+The sophistication gap was about the present—what you didn't know about how to use AI today. The horizon gap is about the future—what's coming and how to prepare.
+
+Now you know. What you do with that knowledge is up to you.
+
+Thank you for your attention. This has been The Sophistication Gap. Go close it.
