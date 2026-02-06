@@ -1,50 +1,16 @@
-# Build stage
-FROM node:20-alpine AS builder
+FROM nginx:alpine
 
-WORKDIR /app
+# Remove default nginx content
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy package files
-COPY package*.json ./
-COPY packages/shared/package*.json ./packages/shared/
-COPY packages/server/package*.json ./packages/server/
-COPY packages/client/package*.json ./packages/client/
+# Copy site files
+COPY index.html /usr/share/nginx/html/
+COPY css/ /usr/share/nginx/html/css/
+COPY js/ /usr/share/nginx/html/js/
 
-# Install dependencies
-RUN npm ci
+# Copy nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy source files
-COPY tsconfig.json ./
-COPY packages/shared ./packages/shared
-COPY packages/server ./packages/server
-COPY packages/client ./packages/client
+EXPOSE 80
 
-# Build all packages
-RUN npm run build
-
-# Production stage
-FROM node:20-alpine AS production
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-COPY packages/shared/package*.json ./packages/shared/
-COPY packages/server/package*.json ./packages/server/
-
-# Install production dependencies only
-RUN npm ci --omit=dev
-
-# Copy built files
-COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
-COPY --from=builder /app/packages/server/dist ./packages/server/dist
-COPY --from=builder /app/packages/client/dist ./packages/client/dist
-
-# Set environment
-ENV NODE_ENV=production
-ENV PORT=3001
-
-# Expose port
-EXPOSE 3001
-
-# Start server
-CMD ["node", "packages/server/dist/index.js"]
+CMD ["nginx", "-g", "daemon off;"]
