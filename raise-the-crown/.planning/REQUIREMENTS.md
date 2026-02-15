@@ -111,11 +111,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-01 | 1 | Pending |
-| API-02 | 1 | Pending |
-| API-03 | 1 | Pending |
-| API-04 | 1 | Pending |
-| API-05 | 1 | Pending |
+| API-01 | 1 | Blocked |
+| API-02 | 1 | Blocked |
+| API-03 | 1 | Blocked |
+| API-04 | 1 | Blocked |
+| API-05 | 1 | Blocked |
 | MOD1-01 | 2 | Pending |
 | MOD1-02 | 2 | Pending |
 | MOD1-03 | 2 | Pending |
@@ -142,21 +142,21 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MOD4-05 | 5 | Pending |
 | MOD4-06 | 5 | Pending |
 | MOD4-07 | 5 | Pending |
-| PLAT-01 | 6 | Pending |
-| PLAT-02 | 6 | Pending |
-| PLAT-03 | 6 | Pending |
-| PLAT-04 | 6 | Pending |
-| PLAT-05 | 6 | Pending |
-| PLAT-06 | 6 | Pending |
-| PLAT-07 | 6 | Pending |
-| CHAT-01 | 6 | Pending |
-| CHAT-02 | 6 | Pending |
-| CHAT-03 | 6 | Pending |
-| CHAT-04 | 6 | Pending |
-| RES-01 | 7 | Pending |
-| RES-02 | 7 | Pending |
-| RES-03 | 7 | Pending |
-| RES-04 | 7 | Pending |
+| PLAT-01 | 6 | Complete |
+| PLAT-02 | 6 | Complete |
+| PLAT-03 | 6 | Complete |
+| PLAT-04 | 6 | Complete |
+| PLAT-05 | 6 | Complete |
+| PLAT-06 | 6 | Complete |
+| PLAT-07 | 6 | Complete |
+| CHAT-01 | 6 | Complete |
+| CHAT-02 | 6 | Complete |
+| CHAT-03 | 6 | Complete |
+| CHAT-04 | 6 | Complete |
+| RES-01 | 7 | Complete |
+| RES-02 | 7 | Complete |
+| RES-03 | 7 | Complete |
+| RES-04 | 7 | Complete |
 
 **Coverage:**
 - v1 requirements: 45 total
@@ -165,4 +165,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-02-15*
-*Last updated: 2026-02-15 after initial definition*
+*Last updated: 2026-02-15 after Phase 6 & 7 completion*
