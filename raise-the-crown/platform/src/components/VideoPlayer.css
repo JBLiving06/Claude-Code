@@ -1,0 +1,210 @@
+.video-player-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* Video Placeholder */
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-light) 100%);
+  border: 2px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl);
+}
+
+.placeholder-content {
+  max-width: 600px;
+  text-align: center;
+}
+
+.placeholder-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--accent-gold);
+  margin-bottom: var(--spacing-lg);
+}
+
+.placeholder-description {
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.6;
+}
+
+.placeholder-topics {
+  margin-bottom: var(--spacing-xl);
+}
+
+.placeholder-topics h4 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--accent-gold);
+  margin-bottom: var(--spacing-md);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.placeholder-topics ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.placeholder-topics li {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  background-color: var(--bg-surface-light);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.placeholder-note {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Video Controls */
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.video-controls.show {
+  opacity: 1;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: var(--spacing-md);
+  transition: height var(--transition-fast);
+}
+
+.progress-bar:hover {
+  height: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--accent-gold);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.controls-bottom {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.control-btn {
+  color: #fff;
+  background-color: transparent;
+}
+
+.control-btn:hover {
+  color: var(--accent-gold);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.time-display {
+  font-size: 0.875rem;
+  color: #fff;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.controls-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.speed-selector {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.speed-selector:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--accent-gold);
+}
+
+.speed-selector:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+}
+
+/* Fullscreen styles */
+.video-player-container:fullscreen {
+  border-radius: 0;
+}
+
+.video-player-container:fullscreen .video-element {
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .video-placeholder {
+    padding: var(--spacing-xl);
+  }
+
+  .placeholder-title {
+    font-size: 1.5rem;
+  }
+
+  .placeholder-description {
+    font-size: 1rem;
+  }
+
+  .placeholder-topics ul {
+    grid-template-columns: 1fr;
+  }
+
+  .video-controls {
+    padding: var(--spacing-md) var(--spacing-sm) var(--spacing-sm);
+  }
+
+  .time-display {
+    font-size: 0.75rem;
+  }
+
+  .speed-selector {
+    font-size: 0.75rem;
+  }
+}

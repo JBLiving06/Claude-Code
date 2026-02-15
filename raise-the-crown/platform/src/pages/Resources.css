@@ -1,0 +1,326 @@
+.resources {
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  padding: var(--spacing-2xl) 0;
+}
+
+.resources-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .resources-container {
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .resources-container {
+    padding: 0 var(--spacing-3xl);
+  }
+}
+
+/* Header */
+.resources-header {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resources-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: var(--spacing-md);
+}
+
+.resources-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Tiers Section */
+.tiers-section {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .tiers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .tiers-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tier Card */
+.tier-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.tier-card.recommended {
+  border-color: var(--accent-gold);
+  border-width: 2px;
+  box-shadow: 0 0 0 1px var(--accent-gold);
+}
+
+.recommended-badge {
+  position: absolute;
+  top: -12px;
+  right: var(--spacing-lg);
+  background-color: var(--accent-gold);
+  color: var(--bg-primary);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.tier-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.tier-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent-gold);
+  margin-bottom: var(--spacing-xs);
+}
+
+.tier-price {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin: 0;
+}
+
+.tier-description {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.9375rem;
+}
+
+/* Tools List */
+.tier-tools {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  flex-grow: 1;
+}
+
+.tool-item {
+  background-color: var(--bg-surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.tool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.tool-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+}
+
+.tool-category {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background-color: var(--bg-surface);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.tool-notes {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.student-discount-tag {
+  margin-top: var(--spacing-sm);
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Discounts Section */
+.discounts-section {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: var(--spacing-md);
+}
+
+.section-description {
+  text-align: center;
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto var(--spacing-2xl);
+  line-height: 1.6;
+}
+
+.discounts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .discounts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .discounts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Discount Card */
+.discount-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-base);
+}
+
+.discount-card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.discount-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.discount-provider {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--accent-gold);
+  margin: 0;
+}
+
+.discount-link {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.discount-link:hover {
+  color: var(--accent-gold);
+  background-color: var(--bg-surface-light);
+}
+
+.discount-benefit {
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.9375rem;
+}
+
+.discount-url {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-family: monospace;
+  margin: 0;
+}
+
+/* Resources Note */
+.resources-note {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.resources-note p {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .resources {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .resources-header {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .tiers-section,
+  .discounts-section {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .tier-card,
+  .discount-card {
+    padding: var(--spacing-lg);
+  }
+
+  .resources-note {
+    padding: var(--spacing-lg);
+  }
+
+  .resources-note p {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy Resource Kit — Raise the Crown</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a14;
+            --bg-surface: #1a1a2e;
+            --gold: #CFB53B;
+            --amber: #E8A317;
+            --text: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --border: rgba(207, 181, 59, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header .subtitle {
+            font-size: 1.25rem;
+            color: var(--amber);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .header .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-intro {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        /* Tool Category */
+        .tool-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--amber);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-icon {
+            font-size: 1.4rem;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tool-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .tool-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-free {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .badge-student {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .badge-paid {
+            background: rgba(234, 179, 8, 0.2);
+            color: #facc15;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .tool-description {
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .tool-pricing {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-recommendation {
+            font-size: 0.95rem;
+            color: var(--amber);
+            font-style: italic;
+            padding-left: 1rem;
+            border-left: 2px solid var(--gold);
+        }
+
+        /* Tier Cards */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            background: var(--bg-surface);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card.recommended {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(207, 181, 59, 0.2);
+        }
+
+        .tier-card.recommended::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 1rem;
+            right: -2.5rem;
+            background: var(--gold);
+            color: var(--bg-primary);
+            padding: 0.25rem 3rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transform: rotate(45deg);
+        }
+
+        .tier-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-price .period {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .tier-tagline {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .tier-tools {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-tools li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .tier-tools li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        .tier-message {
+            background: rgba(207, 181, 59, 0.1);
+            border-left: 3px solid var(--gold);
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.6;
+            border-radius: 4px;
+        }
+
+        /* Access Path Cards */
+        .access-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .access-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .access-card:hover {
+            border-color: var(--gold);
+        }
+
+        .access-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .access-benefit {
+            color: var(--amber);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .access-url {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .access-action {
+            background: var(--gold);
+            color: var(--bg-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .access-action:hover {
+            background: var(--amber);
+            transform: scale(1.05);
+        }
+
+        /* Protocol Mapping */
+        .protocol-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .protocol-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--gold);
+        }
+
+        .protocol-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .protocol-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .protocol-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .protocol-tool-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .protocol-tool-icon {
+            color: var(--amber);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .protocol-tool-text {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .protocol-tool-text strong {
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--amber);
+            text-decoration: underline;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .tool-card, .tier-card, .access-card, .protocol-card {
+                page-break-inside: avoid;
+                border: 1px solid #333;
+            }
+
+            .access-action {
+                background: #333;
+                color: white;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .access-card {
+                grid-template-columns: 1fr;
+            }
+
+            .access-action {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>AI Literacy Resource Kit</h1>
+            <div class="subtitle">Raise the Crown Workshop Series</div>
+            <p class="description">
+                A comprehensive guide to AI tools, pricing, and strategies for high-performing students.
+                Cost-conscious, research-backed, and designed to maximize your academic leverage.
+            </p>
+        </header>
+
+        <!-- Tool Recommendations -->
+        <section class="section">
+            <h2 class="section-title">Tool Recommendation Guide</h2>
+            <p class="section-intro">
+                Not all AI tools are created equal. Here's what actually works, organized by use case.
+            </p>
+
+            <!-- General AI Assistants -->
+            <div class="tool-category">
+                <h3 class="category-title">
+                    <span class="category-icon">💬</span>
+                    General AI Assistants
+                </h3>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">ChatGPT (OpenAI)</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-paid">$20/mo Pro</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        The most versatile AI assistant. GPT-4o mini (free tier) handles most tasks. GPT-4o (paid) excels at complex reasoning and long documents.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> GPT-4o mini, unlimited | <strong>Plus:</strong> $20/month for GPT-4o with higher limits
+                    </div>
+                    <div class="tool-recommendation">
+                        Best for: Structured workflows, exam prep, rubric engineering. The free tier is genuinely powerful.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Claude (Anthropic)</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-paid">$20/mo Pro</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Excels at nuanced reasoning, creative writing, and complex analysis. Better at following detailed instructions than ChatGPT.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Claude 3.5 Haiku, limited messages | <strong>Pro:</strong> $20/month for Claude 3.5 Sonnet with extended limits
+                    </div>
+                    <div class="tool-recommendation">
+                        Best for: Research synthesis, essay outlining, philosophical reasoning. Pick this if you think in paragraphs, not bullet points.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Google Gemini</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-student">Student Pricing</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Deeply integrated with Google Workspace. Strong at multimodal tasks (text, images, video). Free tier is generous.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Gemini 2.0 Flash, unlimited | <strong>AI Premium:</strong> Reduced student pricing for Gemini 2.0 Pro
+                    </div>
+                    <div class="tool-recommendation">
+                        Best for: If you live in Google Docs/Sheets/Slides. Underrated for academic research with Drive integration.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Microsoft Copilot</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Built into Windows, Edge, and Microsoft 365. Powered by GPT-4 technology with web search integration.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> GPT-4 access with web search | <strong>Pro:</strong> $20/month for priority access
+                    </div>
+                    <div class="tool-recommendation">
+                        Best for: Windows users who want GPT-4 quality without paying. Solid web search capabilities.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research & Citations -->
+            <div class="tool-category">
+                <h3 class="category-title">
+                    <span class="category-icon">🔬</span>
+                    Research & Citations
+                </h3>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Perplexity</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-student">Student Discount</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        AI-powered search engine with inline citations. Best for research questions that need current, sourced information.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> 5 Pro searches/day | <strong>Pro:</strong> $20/month (student discount available for $10/month)
+                    </div>
+                    <div class="tool-recommendation">
+                        Game-changer for literature reviews and research synthesis. The citations are actually accurate.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Elicit</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        AI research assistant for academic papers. Searches across 125+ million papers, summarizes findings, extracts data.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> 5,000 one-time credits | <strong>Plus:</strong> $10/month for researchers
+                    </div>
+                    <div class="tool-recommendation">
+                        Essential for STEM research. Saves hours on systematic reviews and meta-analyses.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Semantic Scholar</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">100% Free</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Free academic search engine by the Allen Institute for AI. Automatically extracts key figures, citations, and influences.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Unlimited access to 200+ million papers
+                    </div>
+                    <div class="tool-recommendation">
+                        Best free alternative to Google Scholar. Superior citation graphs and paper recommendations.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Google NotebookLM</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">100% Free</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Upload your course readings, papers, or notes. Ask questions and get answers grounded only in your sources.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Unlimited notebooks and sources
+                    </div>
+                    <div class="tool-recommendation">
+                        Criminally underrated. Perfect for synthesizing lecture notes and course readings before exams.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing & Editing -->
+            <div class="tool-category">
+                <h3 class="category-title">
+                    <span class="category-icon">✍️</span>
+                    Writing & Editing
+                </h3>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Grammarly</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-student">Student Discount</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Real-time grammar, clarity, and tone suggestions. Works everywhere you write (email, docs, social media).
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Basic grammar and spelling | <strong>Premium:</strong> $12/month for students (regularly $30/month)
+                    </div>
+                    <div class="tool-recommendation">
+                        The standard. Premium is worth it if you write a lot. Free tier catches 90% of issues.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">QuillBot</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Paraphrasing tool, grammar checker, and summarizer. Helps rewrite dense academic language into clarity.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> 125 words per paraphrase | <strong>Premium:</strong> $9.95/month for unlimited
+                    </div>
+                    <div class="tool-recommendation">
+                        Great for breaking down complex sources and improving sentence flow. Use ethically.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Hemingway Editor</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free Web</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Highlights complex sentences, passive voice, and readability issues. Makes your writing bold and clear.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Web version | <strong>Desktop:</strong> $19.99 one-time purchase
+                    </div>
+                    <div class="tool-recommendation">
+                        Simple, focused, effective. Run your essays through this before submitting.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coding -->
+            <div class="tool-category">
+                <h3 class="category-title">
+                    <span class="category-icon">💻</span>
+                    Coding & Development
+                </h3>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">GitHub Copilot</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-student">FREE for Students</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        AI pair programmer that suggests code completions in real-time. Works in VS Code, JetBrains, and more.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Students:</strong> 100% free with GitHub Education | <strong>Pro:</strong> $10/month for non-students
+                    </div>
+                    <div class="tool-recommendation">
+                        No-brainer for CS students. Sign up for GitHub Education immediately if you haven't.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Cursor</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-paid">$20/mo Pro</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        AI-first code editor built on VS Code. Chat with your codebase, generate entire features with natural language.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> 2,000 completions/month | <strong>Pro:</strong> $20/month for unlimited
+                    </div>
+                    <div class="tool-recommendation">
+                        Next-generation coding experience. More powerful than Copilot for large refactors and new features.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Replit</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-student">Student Plans</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Browser-based IDE with AI assistance. Code, collaborate, and deploy without setup. Perfect for quick prototypes.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Public repls with AI assistance | <strong>Core:</strong> $25/month for private projects + more AI
+                    </div>
+                    <div class="tool-recommendation">
+                        Best for learning to code or building quick demos. Zero setup friction.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Presentations & Design -->
+            <div class="tool-category">
+                <h3 class="category-title">
+                    <span class="category-icon">🎨</span>
+                    Presentations & Design
+                </h3>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Canva</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                            <span class="badge badge-student">FREE Pro for Students</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Drag-and-drop design tool for presentations, posters, social media graphics. AI image generation and text-to-design.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> 250,000+ templates | <strong>Students:</strong> Free Pro with .edu email (normally $15/month)
+                    </div>
+                    <div class="tool-recommendation">
+                        Essential. Get Canva Pro for free as a student. Your presentations will immediately look 10x better.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Gamma</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        AI-powered presentation builder. Describe your talk, Gamma generates a full slide deck with design and content.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> 400 AI credits | <strong>Plus:</strong> $10/month for unlimited
+                    </div>
+                    <div class="tool-recommendation">
+                        Fastest way to go from outline to polished presentation. Great for conference talks and class presentations.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Beautiful.ai</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free Trial</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Smart presentation software with adaptive templates. Automatically adjusts layouts as you add content.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> Limited presentations | <strong>Pro:</strong> $12/month for teams
+                    </div>
+                    <div class="tool-recommendation">
+                        Best for business-style presentations. Less creative than Canva, more professional than Google Slides.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productivity -->
+            <div class="tool-category">
+                <h3 class="category-title">
+                    <span class="category-icon">⚡</span>
+                    Productivity & Organization
+                </h3>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Notion AI</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-student">FREE Plus for Students</span>
+                            <span class="badge badge-paid">+$10/mo for AI</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        All-in-one workspace with AI writing, summarization, and organization. Build your second brain.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Students:</strong> Free Plus plan | <strong>AI Add-on:</strong> $10/month for AI features
+                    </div>
+                    <div class="tool-recommendation">
+                        Central hub for notes, tasks, and knowledge. AI features are powerful for summarizing and drafting.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-name">Otter.ai</div>
+                        <div class="tool-badges">
+                            <span class="badge badge-free">Free</span>
+                        </div>
+                    </div>
+                    <div class="tool-description">
+                        Real-time transcription for lectures, meetings, and interviews. Automatically generates summaries and action items.
+                    </div>
+                    <div class="tool-pricing">
+                        <strong>Free:</strong> 300 minutes/month | <strong>Pro:</strong> $16.99/month for 1,200 minutes
+                    </div>
+                    <div class="tool-recommendation">
+                        Record lectures and never miss details. Searchable transcripts are a lifesaver for exam prep.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Tiers -->
+        <section class="section">
+            <h2 class="section-title">Tiered Investment Framework</h2>
+            <p class="section-intro">
+                You don't need to spend $100/month to be competitive. Here's how to think about AI tool investment based on your budget and needs.
+            </p>
+
+            <div class="tier-grid">
+                <!-- $0/month Tier -->
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <div class="tier-name">The Foundation</div>
+                        <div class="tier-price">$0<span class="period">/month</span></div>
+                        <div class="tier-tagline">"This is not the struggle tier."</div>
+                    </div>
+                    <ul class="tier-tools">
+                        <li>ChatGPT Free (GPT-4o mini)</li>
+                        <li>Google Gemini Free</li>
+                        <li>Microsoft Copilot Free</li>
+                        <li>Perplexity Free (5 Pro searches/day)</li>
+                        <li>Elicit Free</li>
+                        <li>Google NotebookLM</li>
+                        <li>GitHub Copilot (free for students)</li>
+                        <li>Semantic Scholar</li>
+                    </ul>
+                    <div class="tier-message">
+                        These free tools are genuinely powerful. You can complete 90% of academic tasks at this tier. The limitations are usage caps, not capability.
+                    </div>
+                </div>
+
+                <!-- $20-30/month Tier (RECOMMENDED) -->
+                <div class="tier-card recommended">
+                    <div class="tier-header">
+                        <div class="tier-name">The Sweet Spot</div>
+                        <div class="tier-price">$20-30<span class="period">/month</span></div>
+                        <div class="tier-tagline">"One subscription transforms everything."</div>
+                    </div>
+                    <ul class="tier-tools">
+                        <li><strong>Pick ONE:</strong> ChatGPT Plus ($20) OR Claude Pro ($20)</li>
+                        <li>Perplexity Pro ($20/mo, or $10/mo student)</li>
+                        <li>Everything from The Foundation tier</li>
+                    </ul>
+                    <div class="tier-message">
+                        You don't need both ChatGPT and Claude. Pick the one that fits how you think. ChatGPT for structured workflows, Claude for nuanced reasoning. Add Perplexity Pro if research is central to your work.
+                    </div>
+                </div>
+
+                <!-- $50-75/month Tier -->
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <div class="tier-name">The Builder</div>
+                        <div class="tier-price">$50-75<span class="period">/month</span></div>
+                        <div class="tier-tagline">"Building systems, not just asking questions."</div>
+                    </div>
+                    <ul class="tier-tools">
+                        <li>ChatGPT Plus ($20)</li>
+                        <li>Claude Pro ($20)</li>
+                        <li>Perplexity Pro ($10-20)</li>
+                        <li>Notion AI ($10 add-on)</li>
+                        <li>Cursor Pro ($20) OR Grammarly Premium ($12)</li>
+                    </ul>
+                    <div class="tier-message">
+                        For students who are building products, managing complex research projects, or creating content systems. You're not just consuming AI—you're architecting workflows.
+                    </div>
+                </div>
+
+                <!-- $100+/month Tier -->
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <div class="tier-name">Full Stack</div>
+                        <div class="tier-price">$100+<span class="period">/month</span></div>
+                        <div class="tier-tagline">"Professional-grade toolkit."</div>
+                    </div>
+                    <ul class="tier-tools">
+                        <li>Everything from The Builder tier</li>
+                        <li>Google AI Premium</li>
+                        <li>Cursor Pro</li>
+                        <li>Grammarly Premium</li>
+                        <li>Gamma Plus</li>
+                        <li>Specialty tools for your field</li>
+                    </ul>
+                    <div class="tier-message">
+                        Most students don't need this yet. But know it exists for when you're working professionally, building startups, or doing intensive research. This is the creator/entrepreneur tier.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Discounts -->
+        <section class="section">
+            <h2 class="section-title">Student Discount Access Paths</h2>
+            <p class="section-intro">
+                With a .edu email address, you can unlock thousands of dollars in free or discounted tools. Here's exactly where to go.
+            </p>
+
+            <div class="access-grid">
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>GitHub Education Pack</h3>
+                        <div class="access-benefit">Free: GitHub Copilot, Codespaces, $200+ in cloud credits, access to developer tools</div>
+                        <div class="access-url">education.github.com</div>
+                    </div>
+                    <a href="https://education.github.com" class="access-action" target="_blank">Apply Now</a>
+                </div>
+
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>Notion for Students</h3>
+                        <div class="access-benefit">Free: Plus plan (normally $10/month) with unlimited blocks and file uploads</div>
+                        <div class="access-url">notion.so/students</div>
+                    </div>
+                    <a href="https://www.notion.so/students" class="access-action" target="_blank">Claim Free</a>
+                </div>
+
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>Canva for Education</h3>
+                        <div class="access-benefit">Free: Canva Pro (normally $15/month) with premium templates, AI tools, brand kit</div>
+                        <div class="access-url">canva.com/education</div>
+                    </div>
+                    <a href="https://www.canva.com/education/" class="access-action" target="_blank">Get Free Pro</a>
+                </div>
+
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>JetBrains Student Pack</h3>
+                        <div class="access-benefit">Free: All professional IDEs (IntelliJ, PyCharm, WebStorm, etc.) — $649/year value</div>
+                        <div class="access-url">jetbrains.com/students</div>
+                    </div>
+                    <a href="https://www.jetbrains.com/community/education/" class="access-action" target="_blank">Apply</a>
+                </div>
+
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>Figma for Students</h3>
+                        <div class="access-benefit">Free: Professional plan (normally $15/month) for UI/UX design and prototyping</div>
+                        <div class="access-url">figma.com/education</div>
+                    </div>
+                    <a href="https://www.figma.com/education/" class="access-action" target="_blank">Verify Status</a>
+                </div>
+
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>Microsoft Azure for Students</h3>
+                        <div class="access-benefit">Free: $100 in Azure credits (no credit card required) for cloud computing and AI services</div>
+                        <div class="access-url">azure.microsoft.com/students</div>
+                    </div>
+                    <a href="https://azure.microsoft.com/en-us/free/students/" class="access-action" target="_blank">Activate</a>
+                </div>
+
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>Google One AI Premium</h3>
+                        <div class="access-benefit">Student pricing: Access to Gemini 2.0 Pro with deep Google Workspace integration</div>
+                        <div class="access-url">one.google.com</div>
+                    </div>
+                    <a href="https://one.google.com/" class="access-action" target="_blank">Check Plans</a>
+                </div>
+
+                <div class="access-card">
+                    <div class="access-content">
+                        <h3>Perplexity Student Discount</h3>
+                        <div class="access-benefit">50% off: Pro plan for $10/month (normally $20) — contact support with student email</div>
+                        <div class="access-url">perplexity.ai</div>
+                    </div>
+                    <a href="https://www.perplexity.ai/" class="access-action" target="_blank">Visit</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Protocol Mapping -->
+        <section class="section">
+            <h2 class="section-title">Protocol-to-Tool Mapping</h2>
+            <p class="section-intro">
+                The four protocols from the workshop work best with specific tools. Here's how to match your workflow to the right technology.
+            </p>
+
+            <div class="protocol-grid">
+                <div class="protocol-card">
+                    <div class="protocol-name">Rubric Engineering</div>
+                    <div class="protocol-description">
+                        Reverse-engineering assignment expectations into AI-generated scoring frameworks.
+                    </div>
+                    <div class="protocol-tools">
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Best:</strong> ChatGPT Plus or Claude Pro — both excel at structured, instruction-following tasks
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Free alternative:</strong> ChatGPT Free (GPT-4o mini) — surprisingly strong at rubric generation
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Why these:</strong> Need consistent formatting, attention to detail, ability to iterate on complex criteria
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="protocol-card">
+                    <div class="protocol-name">Research Synthesis</div>
+                    <div class="protocol-description">
+                        Using AI to map academic conversations, identify key debates, and synthesize literature.
+                    </div>
+                    <div class="protocol-tools">
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Research phase:</strong> Perplexity Pro + Elicit + Semantic Scholar — find and map the literature
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Synthesis phase:</strong> Claude Pro or Google NotebookLM — analyze patterns and generate insights
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Free alternative:</strong> Google NotebookLM + Semantic Scholar — surprisingly powerful combination
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Why these:</strong> Need citation accuracy, ability to synthesize contradictory sources, nuanced reasoning
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="protocol-card">
+                    <div class="protocol-name">Pre-Class Prep</div>
+                    <div class="protocol-description">
+                        Transforming course readings into understanding through strategic AI-assisted pre-reading.
+                    </div>
+                    <div class="protocol-tools">
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Best:</strong> Google NotebookLM — upload readings, ask clarifying questions, generate study guides
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Alternative:</strong> ChatGPT or Claude with uploaded PDFs — works for shorter readings
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Recording lectures:</strong> Otter.ai — transcribe and search lectures later
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Why these:</strong> Need source-grounded responses, ability to handle long documents, fast Q&A
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="protocol-card">
+                    <div class="protocol-name">Exam Systems</div>
+                    <div class="protocol-description">
+                        Building AI-powered study systems that generate practice questions and custom study materials.
+                    </div>
+                    <div class="protocol-tools">
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Best:</strong> ChatGPT Plus — strongest at generating structured practice exams and flashcards
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Alternative:</strong> Claude Pro — better for essay-based exams and conceptual questions
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Study guide creation:</strong> NotebookLM + ChatGPT/Claude — upload notes, generate comprehensive guides
+                            </div>
+                        </div>
+                        <div class="protocol-tool-item">
+                            <span class="protocol-tool-icon">→</span>
+                            <div class="protocol-tool-text">
+                                <strong>Why these:</strong> Need consistent output formats, ability to generate varied question types, iterative refinement
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                <strong>Raise the Crown AI Literacy Workshop</strong><br>
+                For Morehouse College students and high-performing learners<br>
+                Last updated: February 15, 2026
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">
+                Questions? Recommendations? Email <a href="mailto:workshop@raisethecrown.ai">workshop@raisethecrown.ai</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
