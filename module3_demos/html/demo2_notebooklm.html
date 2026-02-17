@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>Demo 2: Research Synthesis — NotebookLM</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&family=Fira+Code:wght@400&display=swap');
+
+  :root {
+    --nb-bg: #f8f9fa;
+    --nb-sidebar-bg: #ffffff;
+    --nb-accent: #1a73e8;
+    --nb-accent-light: #e8f0fe;
+    --nb-text: #202124;
+    --nb-text-sec: #5f6368;
+    --nb-border: #dadce0;
+    --nb-source-bg: #f1f3f4;
+    --nb-chat-bg: #ffffff;
+    --nb-user-bg: #e8f0fe;
+    --nb-green: #137333;
+    --nb-purple: #7b1fa2;
+  }
+
+  html, body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: 'Roboto', 'Google Sans', -apple-system, sans-serif;
+    background: var(--nb-bg);
+    color: var(--nb-text);
+  }
+
+  .container {
+    display: flex;
+    width: 1920px;
+    height: 1080px;
+  }
+
+  /* Source Panel (Left) */
+  .source-panel {
+    width: 340px;
+    background: var(--nb-sidebar-bg);
+    border-right: 1px solid var(--nb-border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  .source-header {
+    padding: 20px 20px 12px;
+    border-bottom: 1px solid var(--nb-border);
+  }
+  .source-header-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .nb-logo {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #4285f4, #34a853, #fbbc04, #ea4335);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nb-logo svg {
+    width: 18px; height: 18px; fill: white;
+  }
+  .nb-title {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--nb-text);
+  }
+  .notebook-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--nb-text);
+    padding: 4px 0;
+  }
+  .source-count {
+    font-size: 12px;
+    color: var(--nb-text-sec);
+    margin-top: 2px;
+  }
+  .source-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 12px;
+  }
+  .source-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    transition: background 0.15s;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.15s;
+  }
+  .source-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .source-item:hover {
+    background: var(--nb-source-bg);
+  }
+  .source-icon {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .source-icon.book {
+    color: var(--nb-accent);
+  }
+  .source-icon.paper {
+    color: var(--nb-green);
+  }
+  .source-icon.pdf {
+    color: #ea4335;
+  }
+  .source-icon svg {
+    width: 20px; height: 20px;
+  }
+  .source-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .source-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--nb-text);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .source-meta {
+    font-size: 11px;
+    color: var(--nb-text-sec);
+    margin-top: 2px;
+  }
+  .source-check {
+    width: 18px; height: 18px;
+    border: 2px solid var(--nb-border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .source-check.checked {
+    background: var(--nb-accent);
+    border-color: var(--nb-accent);
+  }
+  .source-check.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* Main chat area */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--nb-bg);
+  }
+  .main-header {
+    height: 56px;
+    border-bottom: 1px solid var(--nb-border);
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    background: white;
+    flex-shrink: 0;
+    gap: 16px;
+  }
+  .tab {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--nb-text-sec);
+    padding: 16px 4px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  .tab.active {
+    color: var(--nb-accent);
+    border-bottom-color: var(--nb-accent);
+  }
+
+  .chat-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 28px 0;
+    scroll-behavior: smooth;
+  }
+  .chat-area::-webkit-scrollbar { width: 6px; }
+  .chat-area::-webkit-scrollbar-track { background: transparent; }
+  .chat-area::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+  .message {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    padding: 0 40px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .message.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .user-msg {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 40px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .user-msg.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .user-bubble {
+    background: var(--nb-user-bg);
+    color: var(--nb-text);
+    padding: 12px 18px;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  .nb-response {
+    max-width: 800px;
+    margin: 0 auto 24px;
+    padding: 0 40px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .nb-response.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nb-response-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .nb-icon {
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nb-icon-text {
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .nb-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--nb-text-sec);
+  }
+  .nb-body {
+    padding-left: 32px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--nb-text);
+  }
+  .nb-body h2 {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 18px 0 8px;
+    color: var(--nb-text);
+  }
+  .nb-body h2:first-child { margin-top: 0; }
+  .nb-body p { margin: 6px 0; }
+  .nb-body strong { font-weight: 600; }
+  .nb-body em { font-style: italic; color: var(--nb-text-sec); }
+  .nb-body ul, .nb-body ol { margin: 6px 0 6px 18px; }
+  .nb-body li { margin: 3px 0; }
+  .nb-body .source-ref {
+    color: var(--nb-accent);
+    font-size: 11px;
+    vertical-align: super;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .stream-chunk {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .stream-chunk.visible {
+    opacity: 1;
+  }
+
+  /* Input */
+  .input-area {
+    border-top: 1px solid var(--nb-border);
+    padding: 14px 28px 18px;
+    background: white;
+    flex-shrink: 0;
+  }
+  .input-box {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--nb-source-bg);
+    border: 1px solid var(--nb-border);
+    border-radius: 24px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: var(--nb-text);
+    display: flex;
+    align-items: center;
+  }
+  .input-box .placeholder { color: #999; }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 16px;
+    background: var(--nb-text);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: blink 0.8s infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  .streaming-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--nb-accent);
+    border-radius: 50%;
+    animation: pulse 1.2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.4;transform:scale(.8)} 50%{opacity:1;transform:scale(1)} }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Source Panel -->
+  <div class="source-panel">
+    <div class="source-header">
+      <div class="source-header-top">
+        <div class="nb-logo">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="nb-title">NotebookLM</div>
+      </div>
+      <div class="notebook-name">Media &amp; Political Polarization — Research Paper</div>
+      <div class="source-count" id="sourceCount">0 sources</div>
+    </div>
+    <div class="source-list" id="sourceList">
+      <!-- Sources injected by JS -->
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="main-header">
+      <div class="tab active">Chat</div>
+      <div class="tab">Studio</div>
+      <div class="tab">Notes</div>
+    </div>
+
+    <div class="chat-area" id="chatArea"></div>
+
+    <div class="input-area">
+      <div class="input-box" id="inputBox">
+        <span class="placeholder">Ask NotebookLM about your sources...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const chatArea = document.getElementById('chatArea');
+const inputBox = document.getElementById('inputBox');
+const sourceList = document.getElementById('sourceList');
+const sourceCountEl = document.getElementById('sourceCount');
+
+// Sources data
+const sources = [
+  { title: 'Sunstein, C. (2017). #Republic: Divided Democracy in the Age of Social Media', type: 'book', year: '2017' },
+  { title: 'Bail, C. et al. (2018). "Exposure to opposing views on social media can increase political polarization." PNAS.', type: 'paper', year: '2018' },
+  { title: 'Pariser, E. (2011). The Filter Bubble: How the New Personalized Web Is Changing What We Read', type: 'book', year: '2011' },
+  { title: 'Prior, M. (2013). "Media and Political Polarization." Annual Review of Political Science.', type: 'paper', year: '2013' },
+  { title: 'Guess, A. et al. (2023). "How do social media feed algorithms affect attitudes and behavior?" Science.', type: 'paper', year: '2023' },
+  { title: 'Levendusky, M. (2013). "Why Do Partisan Media Polarize Viewers?" American Journal of Political Science.', type: 'paper', year: '2013' },
+  { title: 'Kahan, D. (2012). "Ideology, Motivated Reasoning, and Cognitive Reflection." Judgment and Decision Making.', type: 'paper', year: '2012' },
+  { title: 'Napoli, P. (2019). Social Media and the Public Interest: Media Regulation in the Disinformation Age', type: 'book', year: '2019' },
+];
+
+const svgBook = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>`;
+const svgPaper = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>`;
+
+function addSource(index) {
+  const s = sources[index];
+  const iconSvg = s.type === 'book' ? svgBook : svgPaper;
+  const iconClass = s.type === 'book' ? 'book' : 'paper';
+  const el = document.createElement('div');
+  el.className = 'source-item';
+  el.innerHTML = `
+    <div class="source-check checked"></div>
+    <div class="source-icon ${iconClass}">${iconSvg}</div>
+    <div class="source-info">
+      <div class="source-title">${s.title}</div>
+      <div class="source-meta">${s.type === 'book' ? 'Book' : 'Research Paper'} · ${s.year}</div>
+    </div>
+  `;
+  sourceList.appendChild(el);
+  requestAnimationFrame(() => {
+    el.classList.add('visible');
+  });
+  sourceCountEl.textContent = `${index + 1} source${index > 0 ? 's' : ''}`;
+}
+
+function scrollToBottom() {
+  chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
+}
+
+function addUserMsg(text) {
+  const el = document.createElement('div');
+  el.className = 'user-msg';
+  el.innerHTML = `<div class="user-bubble">${text}</div>`;
+  chatArea.appendChild(el);
+  requestAnimationFrame(() => {
+    el.classList.add('visible');
+    scrollToBottom();
+  });
+}
+
+function addNbResponse(id, bodyHtml) {
+  const el = document.createElement('div');
+  el.className = 'nb-response';
+  el.id = id;
+  el.innerHTML = `
+    <div class="nb-response-header">
+      <div class="nb-icon"><span class="nb-icon-text">N</span></div>
+      <div class="nb-label">NotebookLM</div>
+    </div>
+    <div class="nb-body">${bodyHtml}</div>
+  `;
+  chatArea.appendChild(el);
+  requestAnimationFrame(() => {
+    el.classList.add('visible');
+    scrollToBottom();
+  });
+  return el;
+}
+
+function streamChunks(containerId, count, delay, callback) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const chunks = container.querySelectorAll('.stream-chunk');
+  let i = 0;
+  function next() {
+    if (i < chunks.length && i < count) {
+      chunks[i].classList.add('visible');
+      scrollToBottom();
+      i++;
+      setTimeout(next, delay);
+    } else if (callback) {
+      callback();
+    }
+  }
+  next();
+}
+
+function typeInInput(text, duration, callback) {
+  inputBox.innerHTML = '';
+  let i = 0;
+  const charDelay = duration / text.length;
+  const cursor = document.createElement('span');
+  cursor.className = 'typing-cursor';
+  function typeChar() {
+    if (i < text.length) {
+      inputBox.textContent = text.substring(0, i + 1);
+      inputBox.appendChild(cursor);
+      i++;
+      setTimeout(typeChar, charDelay);
+    } else if (callback) setTimeout(callback, 400);
+  }
+  typeChar();
+}
+
+function clearInput() {
+  inputBox.innerHTML = '<span class="placeholder">Ask NotebookLM about your sources...</span>';
+}
+
+// =================== TIMELINE ===================
+
+function runDemo() {
+  let t = 0;
+
+  // Phase 1: Add sources one by one (0-6s)
+  for (let i = 0; i < sources.length; i++) {
+    setTimeout(() => addSource(i), t + i * 600);
+  }
+  t += sources.length * 600 + 3000;
+
+  // Phase 2: Prompt 1 (landscape survey)
+  setTimeout(() => {
+    typeInInput(
+      'What are the major themes across these sources? Create a summary of each source\'s main argument in two sentences.',
+      6000,
+      () => {
+        setTimeout(() => {
+          clearInput();
+          addUserMsg('What are the major themes across these sources? Create a summary of each source\'s main argument in two sentences.');
+          setTimeout(showResponse1, 1000);
+        }, 500);
+      }
+    );
+  }, t);
+  t += 8500;
+
+  function showResponse1() {
+    const chunks = [
+      `<h2>Source Summaries</h2>`,
+      `<p><strong>Sunstein (2017):</strong> Argues that social media creates "echo chambers" where people encounter only like-minded views, fragmenting shared public discourse. Proposes that democratic societies require exposure to diverse perspectives, which algorithmic curation systematically undermines.</p>`,
+      `<p><strong>Bail et al. (2018):</strong> Conducted a randomized experiment exposing Twitter users to opposing political views. Found that exposure actually <em>increased</em> polarization — particularly among Republicans — challenging the assumption that cross-cutting exposure reduces division.</p>`,
+      `<p><strong>Pariser (2011):</strong> Coined the term "filter bubble" to describe how personalization algorithms invisibly narrow the information users encounter. Argues this creates a fragmented information environment where citizens lack shared facts.</p>`,
+      `<p><strong>Prior (2013):</strong> Provides a comprehensive review arguing that the expansion of media choice — not social media specifically — is the primary driver of polarization. Suggests that when people can opt out of news entirely, the remaining news audience becomes more partisan.</p>`,
+      `<p><strong>Guess et al. (2023):</strong> Tested the causal effects of Facebook and Instagram feed algorithms through large-scale experiments. Found that while algorithms increase exposure to like-minded content, removing them had surprisingly small effects on political attitudes.</p>`,
+      `<p><strong>Levendusky (2013):</strong> Examines how partisan cable news (Fox News, MSNBC) reinforces existing beliefs through in-group/out-group framing. Finds that partisan media moves viewers toward more extreme positions and increases negative feelings toward the opposing party.</p>`,
+      `<p><strong>Kahan (2012):</strong> Argues that polarization is driven by "motivated reasoning" — people process information through identity-protective cognition regardless of the source. Suggests the problem is psychological, not primarily technological.</p>`,
+      `<p><strong>Napoli (2019):</strong> Examines the regulatory challenge of social media platforms that function as public infrastructure but operate as private companies. Argues for updated media regulation frameworks that account for algorithmic content distribution.</p>`,
+      `<h2>Major Themes</h2>`,
+      `<p>1. <strong>Algorithmic curation and filter effects</strong> (Sunstein, Pariser, Guess et al., Napoli) — 4 sources</p>`,
+      `<p>2. <strong>Traditional media fragmentation</strong> (Prior, Levendusky) — 2 sources</p>`,
+      `<p>3. <strong>Psychological and cognitive factors</strong> (Kahan, Bail et al.) — 2 sources</p>`,
+      `<p>4. <strong>Regulatory and structural responses</strong> (Napoli, Sunstein) — 2 sources</p>`,
+    ];
+    const html = chunks.map((c, i) => `<span class="stream-chunk">${c}</span>`).join('');
+    addNbResponse('resp1', html);
+    streamChunks('resp1', chunks.length, 3800, () => {
+      setTimeout(doPrompt2, 5000);
+    });
+  }
+
+  function doPrompt2() {
+    typeInInput(
+      'How do these sources relate to each other? Where do they agree? Where do they contradict each other? What questions do they leave unanswered?',
+      6000,
+      () => {
+        setTimeout(() => {
+          clearInput();
+          addUserMsg('How do these sources relate to each other? Where do they agree? Where do they contradict each other? What questions do they leave unanswered?');
+          setTimeout(showResponse2, 1000);
+        }, 500);
+      }
+    );
+  }
+
+  function showResponse2() {
+    const chunks = [
+      `<h2>Key Agreements</h2>`,
+      `<p>All eight sources agree that political polarization has intensified in the digital media era. They share a concern that the information environment has become more fragmented, making shared political understanding harder to achieve.</p>`,
+      `<p>Sunstein, Pariser, and Prior all agree on a structural claim: the expansion of media choice has enabled selective exposure. They differ on whether the primary mechanism is algorithmic (Sunstein, Pariser) or volitional (Prior argues people actively choose partisan media when given options).</p>`,
+      `<h2>Key Contradictions</h2>`,
+      `<p><strong>The central tension is between technological and psychological explanations:</strong></p>`,
+      `<ul>
+        <li>The <strong>algorithmic camp</strong> (Sunstein, Pariser, Napoli) locates the problem in platform design — algorithms create filter bubbles and echo chambers that trap users in narrow information environments.</li>
+        <li>The <strong>psychological camp</strong> (Kahan, Bail et al.) locates the problem in human cognition — people process information through identity-protective reasoning regardless of what they're exposed to. Bail's experiment is particularly damaging to the algorithmic thesis: if exposure to opposing views makes people <em>more</em> polarized, then breaking the filter bubble won't help.</li>
+        <li><strong>Guess et al. (2023)</strong> complicates both camps: removing algorithmic curation had minimal effects on attitudes, suggesting that neither the algorithms nor exposure to opposing views are as powerful as either camp claims.</li>
+      </ul>`,
+      `<p><strong>Levendusky and Prior partially contradict each other:</strong> Levendusky shows partisan media actively moves viewers toward extremes, while Prior argues the bigger effect is self-selection — partisan audiences were already more extreme before tuning in.</p>`,
+      `<h2>Unanswered Questions</h2>`,
+      `<p>1. If algorithms aren't the primary driver (Guess et al.) and exposure doesn't help (Bail et al.), what intervention <em>would</em> reduce polarization?</p>`,
+      `<p>2. How do these dynamics differ across demographic groups, income levels, or educational backgrounds?</p>`,
+      `<p>3. What role does platform design (beyond algorithms) play — features like likes, shares, quote tweets, and comment sections?</p>`,
+    ];
+    const html = chunks.map((c, i) => `<span class="stream-chunk">${c}</span>`).join('');
+    addNbResponse('resp2', html);
+    streamChunks('resp2', chunks.length, 4500, () => {
+      setTimeout(doPrompt3, 5000);
+    });
+  }
+
+  function doPrompt3() {
+    typeInInput(
+      'Based on these themes and tensions, suggest three possible thesis statements I could argue. For each one, identify which sources support it and what counterarguments I\'d need to address.',
+      7000,
+      () => {
+        setTimeout(() => {
+          clearInput();
+          addUserMsg('Based on these themes and tensions, suggest three possible thesis statements I could argue. For each one, identify which sources support it and what counterarguments I\'d need to address.');
+          setTimeout(showResponse3, 1000);
+        }, 500);
+      }
+    );
+  }
+
+  function showResponse3() {
+    const chunks = [
+      `<h2>Three Thesis Options</h2>`,
+      `<p><strong>Thesis 1:</strong> "Polarization is primarily a demand-side phenomenon driven by motivated reasoning, and supply-side interventions targeting algorithms or media regulation will be insufficient without addressing the psychological mechanisms that sustain it."</p>`,
+      `<ul>
+        <li><em>Supporting sources:</em> Kahan (2012), Bail et al. (2018), Guess et al. (2023)</li>
+        <li><em>Counterarguments to address:</em> Levendusky shows partisan media does have causal effects on attitudes, suggesting supply-side factors matter. Napoli argues that even if psychology is the root cause, platform regulation remains necessary because algorithms amplify psychological tendencies at unprecedented scale.</li>
+      </ul>`,
+      `<p><strong>Thesis 2:</strong> "The 'filter bubble' thesis overstates algorithmic influence on polarization; the more consequential shift is the expansion of media choice itself, which enables partisan self-selection that existed long before social media."</p>`,
+      `<ul>
+        <li><em>Supporting sources:</em> Prior (2013), Guess et al. (2023), with partial support from Bail et al.</li>
+        <li><em>Counterarguments to address:</em> Sunstein and Pariser's structural arguments about how algorithmic curation differs qualitatively from volitional media choice. Levendusky's evidence that partisan media actively moves attitudes, not just attracts the already-polarized.</li>
+      </ul>`,
+      `<p><strong>Thesis 3:</strong> "Effective responses to political polarization require a multi-level framework that addresses algorithmic design, media regulation, AND cognitive biases simultaneously — approaches targeting any single level will fail due to compensatory mechanisms at other levels."</p>`,
+      `<ul>
+        <li><em>Supporting sources:</em> Draws on all eight sources as evidence that single-factor explanations are insufficient</li>
+        <li><em>Counterarguments to address:</em> The practical objection — is a multi-level intervention politically or technically feasible? Prior's suggestion that some polarization is a natural consequence of media choice in a free society.</li>
+      </ul>`,
+    ];
+    const html = chunks.map((c, i) => `<span class="stream-chunk">${c}</span>`).join('');
+    addNbResponse('resp3', html);
+    streamChunks('resp3', chunks.length, 5000, () => {
+      setTimeout(() => {
+        document.dispatchEvent(new Event('demo-complete'));
+      }, 8000);
+    });
+  }
+}
+
+// Start
+setTimeout(runDemo, 800);
+</script>
+</body>
+</html>
