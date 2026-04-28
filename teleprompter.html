@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Teleprompter</title>
+<style>
+  :root {
+    --bg: #000;
+    --fg: #f5f5f5;
+    --accent: #ffcc33;
+    --muted: #888;
+    --panel: #111;
+    --border: #222;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+  }
+  button, input, select, textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* ---------- Editor view ---------- */
+  #editor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  #editor h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+  }
+  #editor p.subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  #script-input {
+    flex: 1;
+    width: 100%;
+    background: var(--panel);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+  }
+  #script-input:focus { border-color: var(--accent); }
+  .controls-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 120px;
+  }
+  .field label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .field input, .field select {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .btn {
+    background: var(--accent);
+    color: #000;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.secondary {
+    background: var(--panel);
+    color: var(--fg);
+    border: 1px solid var(--border);
+  }
+
+  /* ---------- Prompter view ---------- */
+  #prompter {
+    display: none;
+    height: 100%;
+    position: relative;
+  }
+  #prompter.active { display: block; }
+  #prompter-text {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    padding: 0 6vw;
+    will-change: transform;
+  }
+  #prompter-inner {
+    /* leading whitespace pushes the start of the script into view */
+    padding-top: 50vh;
+    padding-bottom: 80vh;
+    font-size: 96px;
+    line-height: 1.35;
+    font-weight: 600;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: center;
+    transform: translateZ(0);
+  }
+  /* Center reading guide */
+  #reading-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  /* Mirror modes for use with a teleprompter glass */
+  body.mirror-h #prompter-text { transform: scaleX(-1); }
+  body.mirror-v #prompter-text { transform: scaleY(-1); }
+  body.mirror-h.mirror-v #prompter-text { transform: scale(-1, -1); }
+
+  /* HUD */
+  #hud {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20,20,20,0.85);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: none;
+    gap: 10px;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 0.3s;
+  }
+  #prompter.active ~ #hud { display: flex; }
+  #hud.hidden { opacity: 0; pointer-events: none; }
+  #hud .pill {
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  #hud .pill b { color: var(--fg); font-weight: 600; }
+  #hud button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  #hud button.primary {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  #hud .sep { width: 1px; height: 20px; background: var(--border); }
+
+  #help {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: right;
+    line-height: 1.6;
+    pointer-events: none;
+    display: none;
+  }
+  #prompter.active ~ #help { display: block; }
+  #help kbd {
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: var(--fg);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ EDITOR ============ -->
+<div id="editor">
+  <div>
+    <h1>Teleprompter</h1>
+    <p class="subtitle">Paste your keynote address below, set your pace, then press Start.</p>
+  </div>
+
+  <textarea id="script-input" placeholder="Paste your keynote address here..." spellcheck="false"></textarea>
+
+  <div class="controls-row">
+    <div class="field">
+      <label for="font-size">Font size</label>
+      <input id="font-size" type="number" min="32" max="240" step="4" value="96" />
+    </div>
+    <div class="field">
+      <label for="speed">Speed (px/sec)</label>
+      <input id="speed" type="number" min="20" max="500" step="10" value="80" />
+    </div>
+    <div class="field">
+      <label for="align">Alignment</label>
+      <select id="align">
+        <option value="center" selected>Center</option>
+        <option value="left">Left</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="mirror-h">Mirror</label>
+      <select id="mirror-h">
+        <option value="none" selected>None</option>
+        <option value="h">Horizontal</option>
+        <option value="v">Vertical</option>
+        <option value="both">Both</option>
+      </select>
+    </div>
+    <div style="flex:1"></div>
+    <button class="btn secondary" id="load-sample">Load sample</button>
+    <button class="btn" id="start-btn">Start ▶</button>
+  </div>
+</div>
+
+<!-- ============ PROMPTER ============ -->
+<div id="prompter">
+  <div id="prompter-text">
+    <div id="prompter-inner"></div>
+  </div>
+  <div id="reading-line"></div>
+</div>
+
+<div id="hud">
+  <button id="back-btn">◀ Edit</button>
+  <div class="sep"></div>
+  <button id="play-btn" class="primary">▶ Play</button>
+  <button id="restart-btn">⟲ Restart</button>
+  <div class="sep"></div>
+  <button id="slower-btn">– Slower</button>
+  <span class="pill">Speed <b id="speed-readout">80</b></span>
+  <button id="faster-btn">+ Faster</button>
+  <div class="sep"></div>
+  <button id="smaller-btn">A–</button>
+  <span class="pill">Size <b id="size-readout">96</b></span>
+  <button id="bigger-btn">A+</button>
+</div>
+
+<div id="help">
+  <div><kbd>Space</kbd> play/pause</div>
+  <div><kbd>↑</kbd>/<kbd>↓</kbd> speed</div>
+  <div><kbd>+</kbd>/<kbd>−</kbd> font size</div>
+  <div><kbd>R</kbd> restart · <kbd>Esc</kbd> edit</div>
+  <div><kbd>H</kbd> hide HUD · <kbd>F</kbd> fullscreen</div>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+
+  const editor      = $('editor');
+  const prompter    = $('prompter');
+  const scrollBox   = $('prompter-text');
+  const inner       = $('prompter-inner');
+  const scriptInput = $('script-input');
+  const fontInput   = $('font-size');
+  const speedInput  = $('speed');
+  const alignInput  = $('align');
+  const mirrorInput = $('mirror-h');
+  const startBtn    = $('start-btn');
+  const sampleBtn   = $('load-sample');
+  const backBtn     = $('back-btn');
+  const playBtn     = $('play-btn');
+  const restartBtn  = $('restart-btn');
+  const slowerBtn   = $('slower-btn');
+  const fasterBtn   = $('faster-btn');
+  const smallerBtn  = $('smaller-btn');
+  const biggerBtn   = $('bigger-btn');
+  const speedRead   = $('speed-readout');
+  const sizeRead    = $('size-readout');
+  const hud         = $('hud');
+
+  const state = {
+    playing: false,
+    offset: 0,         // pixels scrolled
+    speed: 80,         // px / sec
+    fontSize: 96,
+    lastTs: 0,
+    rafId: null,
+  };
+
+  const SAMPLE = `Friends, colleagues, and honored guests —
+
+Thank you for being here today.
+
+We stand at a remarkable moment. The work we have done together over the past year has not only met expectations — it has redefined them. And the road ahead is even more exciting.
+
+Today I want to talk about three things: where we have been, where we are, and where we are going next.
+
+[Pause. Breathe. Smile.]
+
+Let's begin.`;
+
+  // ---------- Persistence ----------
+  const SAVE_KEY = 'teleprompter:script';
+  scriptInput.value = localStorage.getItem(SAVE_KEY) || '';
+  scriptInput.addEventListener('input', () => {
+    localStorage.setItem(SAVE_KEY, scriptInput.value);
+  });
+
+  sampleBtn.addEventListener('click', () => {
+    scriptInput.value = SAMPLE;
+    localStorage.setItem(SAVE_KEY, SAMPLE);
+    scriptInput.focus();
+  });
+
+  // ---------- Start / stop ----------
+  function start() {
+    const text = scriptInput.value.trim();
+    if (!text) {
+      scriptInput.focus();
+      scriptInput.placeholder = 'Paste your keynote address here first…';
+      return;
+    }
+
+    inner.textContent = text;
+    state.fontSize = clampInt(fontInput.value, 32, 240, 96);
+    state.speed    = clampInt(speedInput.value, 20, 500, 80);
+    inner.style.fontSize = state.fontSize + 'px';
+    inner.style.textAlign = alignInput.value;
+
+    document.body.classList.remove('mirror-h', 'mirror-v');
+    if (mirrorInput.value === 'h')    document.body.classList.add('mirror-h');
+    if (mirrorInput.value === 'v')    document.body.classList.add('mirror-v');
+    if (mirrorInput.value === 'both') document.body.classList.add('mirror-h', 'mirror-v');
+
+    state.offset = 0;
+    state.playing = false;
+    applyTransform();
+    updateHud();
+
+    editor.style.display = 'none';
+    prompter.classList.add('active');
+    play();
+  }
+
+  function backToEditor() {
+    pause();
+    prompter.classList.remove('active');
+    editor.style.display = 'flex';
+  }
+
+  function play() {
+    if (state.playing) return;
+    state.playing = true;
+    state.lastTs = 0;
+    playBtn.textContent = '❚❚ Pause';
+    state.rafId = requestAnimationFrame(tick);
+  }
+
+  function pause() {
+    state.playing = false;
+    playBtn.textContent = '▶ Play';
+    if (state.rafId) cancelAnimationFrame(state.rafId);
+    state.rafId = null;
+  }
+
+  function togglePlay() {
+    state.playing ? pause() : play();
+  }
+
+  function restart() {
+    state.offset = 0;
+    applyTransform();
+  }
+
+  // ---------- Animation ----------
+  function tick(ts) {
+    if (!state.playing) return;
+    if (!state.lastTs) state.lastTs = ts;
+    const dt = (ts - state.lastTs) / 1000;
+    state.lastTs = ts;
+    state.offset += state.speed * dt;
+
+    const max = inner.scrollHeight; // we let it scroll past; padding-bottom keeps it readable
+    if (state.offset > max) state.offset = max;
+
+    applyTransform();
+    state.rafId = requestAnimationFrame(tick);
+  }
+
+  function applyTransform() {
+    inner.style.transform = `translate3d(0, ${-state.offset}px, 0)`;
+  }
+
+  // ---------- Adjustments ----------
+  function setSpeed(v) {
+    state.speed = clampInt(v, 20, 500, state.speed);
+    updateHud();
+  }
+  function setFont(v) {
+    state.fontSize = clampInt(v, 32, 240, state.fontSize);
+    inner.style.fontSize = state.fontSize + 'px';
+    updateHud();
+  }
+  function updateHud() {
+    speedRead.textContent = state.speed;
+    sizeRead.textContent  = state.fontSize;
+  }
+  function clampInt(v, lo, hi, fallback) {
+    const n = parseInt(v, 10);
+    if (Number.isNaN(n)) return fallback;
+    return Math.max(lo, Math.min(hi, n));
+  }
+
+  // ---------- Wiring ----------
+  startBtn.addEventListener('click', start);
+  backBtn.addEventListener('click', backToEditor);
+  playBtn.addEventListener('click', togglePlay);
+  restartBtn.addEventListener('click', restart);
+  slowerBtn.addEventListener('click', () => setSpeed(state.speed - 10));
+  fasterBtn.addEventListener('click', () => setSpeed(state.speed + 10));
+  smallerBtn.addEventListener('click', () => setFont(state.fontSize - 8));
+  biggerBtn.addEventListener('click',  () => setFont(state.fontSize + 8));
+
+  // ---------- Keyboard ----------
+  document.addEventListener('keydown', (e) => {
+    if (!prompter.classList.contains('active')) return;
+    switch (e.key) {
+      case ' ':
+        e.preventDefault();
+        togglePlay();
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setSpeed(state.speed + 10);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        setSpeed(state.speed - 10);
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        state.offset += 100;
+        applyTransform();
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        state.offset = Math.max(0, state.offset - 100);
+        applyTransform();
+        break;
+      case '+':
+      case '=':
+        setFont(state.fontSize + 8);
+        break;
+      case '-':
+      case '_':
+        setFont(state.fontSize - 8);
+        break;
+      case 'r':
+      case 'R':
+        restart();
+        break;
+      case 'h':
+      case 'H':
+        hud.classList.toggle('hidden');
+        break;
+      case 'f':
+      case 'F':
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+        break;
+      case 'Escape':
+        backToEditor();
+        break;
+    }
+  });
+
+  // Mouse wheel scrubs while paused; nudges offset while playing
+  scrollBox.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    state.offset = Math.max(0, state.offset + e.deltaY);
+    applyTransform();
+  }, { passive: false });
+
+  updateHud();
+})();
+</script>
+</body>
+</html>
