@@ -159,7 +159,7 @@ For a 90-minute workshop:
 | Avatar Video | HeyGen Creator | $29 |
 | Interactive Q&A | D-ID Agents | (included in Advanced) |
 | Interactive Q&A | HeyGen LiveAvatar | $99 |
-| LLM (OpenAI) | GPT-4 Turbo | ~$20-50 |
+| LLM (OpenAI) | GPT-6 Sol | Varies by usage |
 | Vector DB | Pinecone Free | $0 |
 
 **Recommended Budget**: $150-200/month for full functionality
