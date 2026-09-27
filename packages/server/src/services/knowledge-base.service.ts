@@ -349,8 +349,9 @@ export class KnowledgeBaseService {
           }Current question: ${request.question}`,
         },
       ],
+      reasoning_effort: 'none',
       temperature: request.settings?.temperature ?? 0.7,
-      max_tokens: request.settings?.maxLength ?? 500,
+      max_completion_tokens: request.settings?.maxLength ?? 500,
     });
 
     const answer = completion.choices[0].message.content || 'I apologize, but I cannot generate an answer at this time.';
